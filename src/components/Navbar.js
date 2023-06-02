@@ -7,6 +7,10 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { CgGitFork } from "react-icons/cg";
 import { ImBlog } from "react-icons/im";
+import {auth} from "../firebase"
+import { useNavigate } from "react-router-dom";
+
+import {  signOut } from "firebase/auth";
 import {
   AiFillStar,
   AiOutlineHome,
@@ -15,8 +19,10 @@ import {
 } from "react-icons/ai";
 
 import { CgFileDocument } from "react-icons/cg";
-
-function NavBar() {
+function NavBar(props) {
+  console.log("tkherbi9a",props)
+  const navigate = useNavigate();
+  const {isLoggedIn,setIsLoggedIn}=props;
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
 
@@ -24,12 +30,23 @@ function NavBar() {
     if (window.scrollY >= 20) {
       updateNavbar(true);
     } else {
+    }
       updateNavbar(false);
     }
-  }
 
   window.addEventListener("scroll", scrollHandler);
-
+  const handleLogout = () => {               
+    signOut(auth).then(() => {
+    // Sign-out successful.
+    setIsLoggedIn(false);
+        navigate("/");
+  console.log("wiiwa",props.isLoggedIn)
+        
+        console.log("Signed out successfully")
+    }).catch((error) => {
+    // An error happened.
+    });
+}   
   return (
     <Navbar
       expanded={expand}
@@ -62,7 +79,7 @@ function NavBar() {
             <Nav.Item>
               <Nav.Link
                 as={Link}
-                to="/project"
+                to="/product"
                 onClick={() => updateExpanded(false)}
               >
                 <AiOutlineFundProjectionScreen
@@ -70,17 +87,43 @@ function NavBar() {
                 />{" "}
                 Produits
               </Nav.Link>
-          </Nav.Item>    
+          </Nav.Item>  
 
-          <Nav.Item>
+          {!isLoggedIn && <Nav.Item>
               <Nav.Link
                 as={Link}
-                to="/about"
-                onClick={() => updateExpanded(false)}
+                to="/login"
+                // onClick={() => updateExpanded(false)}
+                onClick={() => setIsLoggedIn(true)}
+
               >
                 <AiOutlineUser style={{ marginBottom: "2px" }} /> Login
               </Nav.Link>
             </Nav.Item>
+            }
+            
+            {isLoggedIn && <Nav.Item>
+            <Nav.Link
+                as={Link}
+                to="/"
+                // onClick={() => updateExpanded(false)}
+                onClick={handleLogout}
+              >
+                <AiOutlineUser style={{ marginBottom: "2px" }} /> logout
+              </Nav.Link>
+            </Nav.Item>
+            } 
+            {/* {props.isLoggedIn && <Nav.Item>
+            <Nav.Link
+                as={Link}
+                to="/"
+                // onClick={() => updateExpanded(false)}
+                onClick={handleLogout}
+              >
+                <AiOutlineUser style={{ marginBottom: "2px" }} /> logout
+              </Nav.Link>
+            </Nav.Item> } */}
+
             {/* <Nav.Item>
               <Nav.Link
                 as={Link}

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import ProjectCard from "./ProjectCards";
+import ProductsCards from "./ProductsCards";
 import Particle from "../Particle";
 import dafalgan from "../../Assets/Projects/DAFALGAN.png";
 import smecta from "../../Assets/Projects/SMECTA.png";
@@ -8,8 +8,24 @@ import dalfein from "../../Assets/Projects/DALFEINE.png";
 import doliprane from "../../Assets/Projects/DOLIPRANE.png";
 import humex from "../../Assets/Projects/HUMEX.png";
 import magnesium from "../../Assets/Projects/MAGNESIUM.png";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+function Products() {
+  const auth = getAuth();
+useEffect(()=>{
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    
+    const uid = user.uid;
+    console.log(uid)
+    // ...
+  } else {
+    // User is signed out
+    // ..
+    console.log("uid")
+  }
+});
+})
 
-function Projects() {
   return (
     <Container fluid className="project-section">
       <Particle />
@@ -22,7 +38,7 @@ function Projects() {
         </p> */}
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
           <Col md={4} className="project-card">
-            <ProjectCard
+            <ProductsCards
               imgPath={doliprane}
               isBlog={false}
               // title="Chatify"
@@ -31,7 +47,7 @@ function Projects() {
           </Col>
 
           <Col md={4} className="project-card">
-            <ProjectCard
+            <ProductsCards
               imgPath={magnesium}
               isBlog={false}
             //   title="Bits-0f-C0de"
@@ -40,7 +56,7 @@ function Projects() {
           </Col>
 
           <Col md={4} className="project-card">
-            <ProjectCard
+            <ProductsCards
               imgPath={humex}
               isBlog={false}
               // title="Editor.io"
@@ -51,7 +67,7 @@ function Projects() {
           </Col>
 
           <Col md={4} className="project-card">
-            <ProjectCard
+            <ProductsCards
               imgPath={dalfein}
               isBlog={false}
               // title="Plant AI"
@@ -62,7 +78,7 @@ function Projects() {
           </Col>
 
           <Col md={4} className="project-card">
-            <ProjectCard
+            <ProductsCards
               imgPath={dafalgan}
               isBlog={false}
               // title="Ai For Social Good"
@@ -73,7 +89,7 @@ function Projects() {
           </Col>
 
           <Col md={4} className="project-card">
-            <ProjectCard
+            <ProductsCards
               imgPath={smecta}
               isBlog={false}
               // title="Face Recognition and Emotion Detection"
@@ -89,4 +105,4 @@ function Projects() {
   );
 }
 
-export default Projects;
+export default Products;

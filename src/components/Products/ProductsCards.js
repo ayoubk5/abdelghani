@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { CgWebsite } from "react-icons/cg";
 
-function ProjectCards(props) {
+function ProductsCards(props) {
   return (
     <Card className="project-card-view">
       <Card.Img variant="top" src={props.imgPath} alt="card-img" />
@@ -34,4 +34,4 @@ function ProjectCards(props) {
     </Card>
   );
 }
-export default ProjectCards;
+export default ProductsCards;
