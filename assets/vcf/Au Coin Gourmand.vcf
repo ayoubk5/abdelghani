@@ -1,0 +1,14 @@
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 16.5//EN
+N:Au Coin Gourmand;;;;
+FN:Restaurant Au Coin Gourmand
+ORG:Restaurant                                                             
+item1.EMAIL;type=INTERNET;type=pref:
+item1.X-ABLabel:Gmail
+item2.TEL;type=pref:+32 475 56 48 83
+item2.X-ABLabel:Mobile
+item3.ADR;type=pref:;;;BRUSSELS;;;Belgique
+item3.X-ABLabel:Adresse
+X-SOCIALPROFILE;type=facebook:
+END:VCARD
