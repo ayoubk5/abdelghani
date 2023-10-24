@@ -238,8 +238,23 @@ column-gap: 0.3rem;
   display: flex;
   justify-content: center;
   column-gap: .75rem;
+  
 }
 
+.profile__social a 
+{
+  border-radius: 30px;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  text-decoration: none;
+
+}
+.profile__social a h4
+{
+  text-decoration: none;
+  color: #4692DD;
+}
 
 /*=============== BUTTONS ===============*/
 .button {
